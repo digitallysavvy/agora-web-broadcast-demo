@@ -12,17 +12,18 @@ var client = AgoraRTC.createClient({mode: 'live', codec: 'vp8'}); // vp8 to work
 // -- .DEBUG for dev 
 // -- .NONE for prod
 AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.DEBUG); 
-
-// Due to broswer restrictions on auto-playing video, 
-// user must click to init and join channel
-$("#watch-live-btn").click(function(){
-  // init Agora SDK
-  client.init(agoraAppId, function () {
-    $("#watch-live-overlay").remove();
-    console.log('AgoraRTC client initialized');
-    joinChannel(); // join channel upon successfull init
-  }, function (err) {
-    console.log('[ERROR] : AgoraRTC client init failed', err);
+$( document ).ready( function() {
+  // Due to broswer restrictions on auto-playing video, 
+  // user must click to init and join channel
+  $("#watch-live-btn").click(function(){
+    // init Agora SDK
+    client.init(agoraAppId, function () {
+      $("#watch-live-overlay").remove();
+      console.log('AgoraRTC client initialized');
+      joinChannel(); // join channel upon successfull init
+    }, function (err) {
+      console.log('[ERROR] : AgoraRTC client init failed', err);
+    });
   });
 });
 
