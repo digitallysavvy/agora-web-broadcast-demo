@@ -16,6 +16,7 @@ $( document ).ready( function() {
   // Due to broswer restrictions on auto-playing video, 
   // user must click to init and join channel
   $("#watch-live-btn").click(function(){
+    console.log("user clicked to watch broadcast")
     // init Agora SDK
     client.init(agoraAppId, function () {
       $("#watch-live-overlay").remove();
