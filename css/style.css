@@ -39,7 +39,7 @@ body .btn:focus{
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background-image: url('../images/AllThingsRTC_Live-bg.jpg');
+  background-image: url('../images/AllThingsRTC_live-bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
