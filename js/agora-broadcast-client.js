@@ -30,6 +30,7 @@ var devices = {
 }
 
 var externalBroadcastUrl = '';
+var injectedStreamURL = '';
 
 // default config for rtmp
 var defaultConfigRTMP = {
@@ -69,7 +70,25 @@ client.on('stream-published', function (evt) {
 
 // when a remote stream is added
 client.on('stream-added', function (evt) {
-  console.log('new stream added: ' + evt.stream.getId());
+  var stream = evt.stream;
+  var streamId = stream.getId();
+  console.log("new stream added: " + streamId);
+  // Subscribe to the stream.
+  client.subscribe(stream, function (err) {
+    console.log("[ERROR] : subscribe stream failed", err);
+  });
+});
+
+client.on('stream-subscribed', function (evt) {
+  var remoteStream = evt.stream;
+  var remoteId = remoteStream.getId();
+  console.log("Subscribe remote stream successfully: " + remoteId);
+  if( $('#full-screen-video').is(':empty') ) { 
+    mainStreamId = remoteId;
+    remoteStream.play('full-screen-video');
+  } else {
+    addRemoteStreamMiniView(remoteStream);
+  }
 });
 
 client.on('stream-removed', function (evt) {
@@ -388,3 +407,26 @@ function addExternalTransmitionMiniView(rtmpUrl){
 
 }
 
+// REMOTE STREAMS UI
+function addRemoteStreamMiniView(remoteStream){
+  var streamId = remoteStream.getId();
+  // append the remote stream template to #remote-streams
+  $('#external-broadcasts-container').append(
+    $('<div/>', {'id': streamId + '_container',  'class': 'remote-stream-container col'}).append(
+      $('<div/>', {'id': streamId + '_mute', 'class': 'mute-overlay'}).append(
+          $('<i/>', {'class': 'fas fa-microphone-slash'})
+      ),
+      $('<div/>', {'id': streamId + '_no-video', 'class': 'no-video-overlay text-center'}).append(
+        $('<i/>', {'class': 'fas fa-user'})
+      ),
+      $('<div/>', {'id': 'agora_remote_' + streamId, 'class': 'remote-video'})
+    )
+  );
+  remoteStream.play('agora_remote_' + streamId); 
+
+  var containerId = '#' + streamId + '_container';
+  $(containerId).dblclick(function() {
+    client.removeInjectStreamUrl(injectedStreamURL);
+    $(containerId).remove();
+  });
+}

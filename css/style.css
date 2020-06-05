@@ -70,6 +70,7 @@ body .btn:focus{
 
 .remote-stream-container { 
   display: inline-block;
+  height: 250px;
 }
 
 #rtmp-controlers {
