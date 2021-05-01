@@ -66,6 +66,13 @@ client.init(agoraAppId, function () {
 // client callbacks
 client.on('stream-published', function (evt) {
   console.log('Publish local stream successfully');
+  // beauty effects are processor intensive
+  // evt.stream.setBeautyEffectOptions(true, {
+  //   lighteningContrastLevel: 2,
+  //   lighteningLevel: 0.5,
+  //   smoothnessLevel: 0.8,
+  //   rednessLevel: 0.5
+  // });
 });
 
 // when a remote stream is added
@@ -259,6 +266,7 @@ function changeStreamSource (deviceIndex, deviceType) {
       localStreams.camera.micId = deviceId;
     } else if (deviceType === "video") {
       localStreams.camera.camId = deviceId;
+      localStreams.camera.stream.setVideoProfile(cameraVideoProfile);
     } else {
       console.log("unable to determine deviceType: " + deviceType);
     }
@@ -429,4 +437,6 @@ function addRemoteStreamMiniView(remoteStream){
     client.removeInjectStreamUrl(injectedStreamURL);
     $(containerId).remove();
   });
+  window.client = client
+
 }

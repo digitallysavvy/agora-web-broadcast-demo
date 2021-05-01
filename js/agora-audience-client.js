@@ -71,21 +71,30 @@ client.on('peer-leave', function(evt) {
 });
 
 // show mute icon whenever a remote has muted their mic
-client.on('mute-audio', function (evt) {
-  var remoteId = evt.uid;
+client.on("mute-audio", function (evt) {
+  toggleVisibility('#' + evt.uid + '_mute', true);
 });
 
-client.on('unmute-audio', function (evt) {
-  var remoteId = evt.uid;
+client.on("unmute-audio", function (evt) {
+  toggleVisibility('#' + evt.uid + '_mute', false);
 });
 
 // show user icon whenever a remote has disabled their video
-client.on('mute-video', function (evt) {
+client.on("mute-video", function (evt) {
   var remoteId = evt.uid;
+  // if the main user stops their video select a random user from the list
+  if (remoteId != mainStreamId) {
+    // if not the main video then show the user icon
+    toggleVisibility('#' + remoteId + '_no-video', true);
+  }
 });
 
-client.on('unmute-video', function (evt) {
+client.on("unmute-video", function (evt) {
   var remoteId = evt.uid;
+  if (remoteId != mainStreamId) {
+    // if not the main video then hide the user icon
+    toggleVisibility('#' + remoteId + '_no-video', false);
+  }
 });
 
 // ingested live stream 
