@@ -11,7 +11,7 @@ var mainStreamId; // reference to main stream
 
 // set video profile 
 // [full list: https://docs.agora.io/en/Interactive%20Broadcast/videoProfile_web?platform=Web#video-profile-table]
-var cameraVideoProfile = '720p_6'; // 960 × 720 @ 30fps  & 750kbs
+var cameraVideoProfile = '1080p_5'; // 960 × 720 @ 30fps  & 750kbs
 
 // keep track of streams
 var localStreams = {
@@ -66,6 +66,12 @@ client.init(agoraAppId, function () {
 // client callbacks
 client.on('stream-published', function (evt) {
   console.log('Publish local stream successfully');
+  evt.stream.setBeautyEffectOptions(true, {
+    lighteningContrastLevel: 2,
+    lighteningLevel: 0.5,
+    smoothnessLevel: 0.8,
+    rednessLevel: 0.5
+  });
 });
 
 // when a remote stream is added
@@ -259,6 +265,7 @@ function changeStreamSource (deviceIndex, deviceType) {
       localStreams.camera.micId = deviceId;
     } else if (deviceType === "video") {
       localStreams.camera.camId = deviceId;
+      localStreams.camera.stream.setVideoProfile(cameraVideoProfile);
     } else {
       console.log("unable to determine deviceType: " + deviceType);
     }
@@ -429,4 +436,6 @@ function addRemoteStreamMiniView(remoteStream){
     client.removeInjectStreamUrl(injectedStreamURL);
     $(containerId).remove();
   });
+  window.client = client
+
 }

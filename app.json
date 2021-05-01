@@ -1,0 +1,20 @@
+{
+  "name": "Agora.io Web SDK - Broadcast Demo",
+  "description": "A simple implementation of a live broadcast web-app using the Agora.io Web SDK. This code implements a 'one to many' live broadcasting web-app similar to Facebook, and Youtube Live. The web-app will allow a single broadcaster to stream their video feed to a multi-person audience.",
+  "repository": "https://github.com/digitallysavvy/agora-web-broadcast-demo",
+  "website": "https://agora.io/",
+  "logo": "https://cdn-images-1.medium.com/max/2400/1*WOGbS208nSRrtZxcgEz4RA.png",
+  "success_url": "/agora-broadcaster-client.html",
+  "keywords": [
+    "agora",
+    "webrtc",
+    "jquery"
+  ],
+  "env": {
+    "APP_ID": {
+      "description": "A secret key issued to app developers by Agora to identify projects and organizations.",
+      "value": ""
+    }
+  },
+  "image": "heroku/php"
+}
