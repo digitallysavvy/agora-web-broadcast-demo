@@ -11,7 +11,7 @@ var mainStreamId; // reference to main stream
 
 // set video profile 
 // [full list: https://docs.agora.io/en/Interactive%20Broadcast/videoProfile_web?platform=Web#video-profile-table]
-var cameraVideoProfile = '1080p_5'; // 960 × 720 @ 30fps  & 750kbs
+var cameraVideoProfile = '720p_6'; // 960 × 720 @ 30fps  & 750kbs
 
 // keep track of streams
 var localStreams = {
