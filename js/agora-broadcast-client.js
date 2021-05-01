@@ -66,12 +66,13 @@ client.init(agoraAppId, function () {
 // client callbacks
 client.on('stream-published', function (evt) {
   console.log('Publish local stream successfully');
-  evt.stream.setBeautyEffectOptions(true, {
-    lighteningContrastLevel: 2,
-    lighteningLevel: 0.5,
-    smoothnessLevel: 0.8,
-    rednessLevel: 0.5
-  });
+  // beauty effects are processor intensive
+  // evt.stream.setBeautyEffectOptions(true, {
+  //   lighteningContrastLevel: 2,
+  //   lighteningLevel: 0.5,
+  //   smoothnessLevel: 0.8,
+  //   rednessLevel: 0.5
+  // });
 });
 
 // when a remote stream is added
