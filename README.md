@@ -6,7 +6,7 @@ A simple implementation of a live broadcast web-app using the [Agora.io](https:/
 In a [previous project](https://github.com/digitallysavvy/group-video-chat) we built a group video chat app similar to a Google Hangouts/Meet. Now we want to build something more akin to Instagram Live. When building a live broadcasting web-app, the architecture is similar to that of a communication web-app, except with a slight twist.
 
 
-## Pre Requisites ##
+## Pre Requisites for the web server ##
 - A [simple web server](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server) — I like to use [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 - An SSL cert or way to have an https connection (I use [ngrok](https://ngrok.com))
 - A developer account with [Agora.io](https://console.agora.io)
